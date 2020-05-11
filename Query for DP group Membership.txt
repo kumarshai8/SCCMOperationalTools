@@ -1,0 +1,8 @@
+SELECT     vDistributionPoints.ServerName, vDistributionPoints.SMSSiteCode, vDistributionPoints.IsPXE, vDistributionPoints.SupportUnknownMachines, 
+                      vDistributionPoints.PreStagingAllowed, vDistributionPoints.IsPullDP, vDistributionPoints.IsProtected, vDistributionPoints.DPDrive, vDistributionPoints.MinFreeSpace, 
+                      vSMS_DPGroupInfo.Name AS DPGroup
+FROM         vDistributionPoints INNER JOIN
+                      v_DPGroupMembers ON vDistributionPoints.NALPath = v_DPGroupMembers.DPNALPath INNER JOIN
+                      vSMS_DPGroupInfo ON v_DPGroupMembers.GroupID = vSMS_DPGroupInfo.GroupID
+
+ORDER BY vDistributionPoints.ServerName
