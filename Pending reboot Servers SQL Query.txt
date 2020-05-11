@@ -1,0 +1,52 @@
+select  Distinct sys.AD_Site_Name0 as'AD Site',Sys.Resource_Domain_OR_Workgr0 as'Domain',  sys.Name0 as'Name', ws.LastHWScan, OPSYS.LastBootUpTime0 as'LastBootUpTime', OPSYS.Caption0 as'OS' from v_R_System sys
+join v_AssignmentState_Combined assc on sys.ResourceID=assc.ResourceID
+join v_StateNames sn on assc.StateType = sn.TopicType and sn.StateID=isnull(assc.StateID,0)
+join v_GS_WORKSTATION_STATUS ws on sys.ResourceID=ws.ResourceID
+join v_GS_OPERATING_SYSTEM OPSYS on sys.ResourceID=OPSYS.ResourceID
+Inner join v_FullCollectionMembership m on m.ResourceID=OPSYS.ResourceID
+where sn.StateName like'%Pending system restart%'and sys.Operating_System_Name_and0 like'%server%'
+and m.CollectionID in ('P020000A')
+ORDER by sys.AD_Site_Name0,Sys.Name0
+--select top 10 * From v_FullCollectionMembership 
+
+------------------------------------------------------------------------
+
+
+final Query that used in Reports
+
+http://eskonr.com/2019/01/sccm-report-get-list-of-devices-with-pending-reboot-in-a-collection-with-different-states/
+https://secureinfra.blog/2019/01/10/understanding-and-using-the-pending-restart-feature-in-sccm-current-branch/
+
+Views- dbo.v_CombinedDeviceResources
+
+select Clientstate, Name
+from dbo.v_CombinedDeviceResources
+where Clientstate >0
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+SELECT
+Distinct 
+       si.Region
+       ,sys.Name0 as'ServerName'         
+       ,si.[Description]
+       ,si.[Owner]
+       ,sys.AD_Site_Name0 as'AD Site'
+       ,Sys.Resource_Domain_OR_Workgr0 as'Domain',     
+ 
+       CASE WHEN 
+       ClientState=5  THEN 'Configuration Manager, Windows update' 
+       WHEN ClientState=8  THEN 'Add or Remove Feature'
+       WHEN ClientState=12 THEN 'Windows Update, Add or Remove Feature'
+       WHEN ClientState=13 THEN 'Configuration Manager, Windows Update, Add or Remove Feature' 
+       WHEN (ClientState=0 or ClientState like null) then 'No pending reboot'
+       end as Stat,
+      m.CollectionID,
+m.SiteCode
+from v_R_System sys
+INNER JOIN v_FullCollectionMembership m on m.ResourceID=SYS.ResourceID
+LEFT JOIN GlobalServerInventory.dbo.ServerInventory si on si.Hostname = sys.Name0 
+LEFT JOIN vSMS_CombinedDeviceResources t on t.MachineID=SYS.ResourceID
+where m.CollectionID='CAS0072C'
+
+-----------------------------------------------------------------------------------------------

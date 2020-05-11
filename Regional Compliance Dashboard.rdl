@@ -1,0 +1,1269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Chart Name="Chart10">
+        <ChartCategoryHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Label />
+            </ChartMember>
+          </ChartMembers>
+        </ChartCategoryHierarchy>
+        <ChartSeriesHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Group Name="Chart9_SeriesGroup2">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!Status.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!Status.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <Label>=Fields!Status.Value</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartSeriesHierarchy>
+        <ChartData>
+          <ChartSeriesCollection>
+            <ChartSeries Name="Status">
+              <ChartDataPoints>
+                <ChartDataPoint>
+                  <ChartDataPointValues>
+                    <Y>=Count(Fields!Status.Value)</Y>
+                  </ChartDataPointValues>
+                  <ChartDataLabel>
+                    <Style>
+                      <FontFamily>Segoe UI</FontFamily>
+                      <Format>0.00\%</Format>
+                    </Style>
+                    <UseValueAsLabel>true</UseValueAsLabel>
+                    <Visible>true</Visible>
+                  </ChartDataLabel>
+                  <ActionInfo>
+                    <Actions>
+                      <Action>
+                        <Drillthrough>
+                          <ReportName>Regional Summary Report</ReportName>
+                          <Parameters>
+                            <Parameter Name="Status">
+                              <Value>=Fields!StatusID.Value</Value>
+                            </Parameter>
+                            <Parameter Name="ReportType">
+                              <Value>Bar_Chart</Value>
+                            </Parameter>
+                            <Parameter Name="CollectionID">
+                              <Value>=Parameters!Locations.Value</Value>
+                            </Parameter>
+                          </Parameters>
+                        </Drillthrough>
+                      </Action>
+                    </Actions>
+                  </ActionInfo>
+                  <Style>
+                    <Color>=IIF(Fields!Status.Value = "Installed", "#7cbb00", "#f65314")
+'Automatic</Color>
+                  </Style>
+                  <ChartMarker>
+                    <Style />
+                  </ChartMarker>
+                  <DataElementOutput>Output</DataElementOutput>
+                </ChartDataPoint>
+              </ChartDataPoints>
+              <Type>Bar</Type>
+              <Subtype>PercentStacked</Subtype>
+              <Style />
+              <ChartEmptyPoints>
+                <Style />
+                <ChartMarker>
+                  <Style />
+                </ChartMarker>
+                <ChartDataLabel>
+                  <Style />
+                </ChartDataLabel>
+              </ChartEmptyPoints>
+              <ValueAxisName>Primary</ValueAxisName>
+              <CategoryAxisName>Primary</CategoryAxisName>
+              <ChartSmartLabel>
+                <CalloutLineColor>Black</CalloutLineColor>
+                <MinMovingDistance>0pt</MinMovingDistance>
+              </ChartSmartLabel>
+            </ChartSeries>
+          </ChartSeriesCollection>
+        </ChartData>
+        <ChartAreas>
+          <ChartArea Name="Default">
+            <ChartCategoryAxes>
+              <ChartAxis Name="Primary">
+                <Visible>False</Visible>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartCategoryAxes>
+            <ChartValueAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <Border>
+                    <Color>LightGrey</Color>
+                  </Border>
+                  <FontFamily>Segoe UI</FontFamily>
+                  <FontSize>8pt</FontSize>
+                  <Format>0\%</Format>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontFamily>Segoe UI</FontFamily>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>LightGrey</Color>
+                      <Width>0.5pt</Width>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartValueAxes>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </ChartArea>
+        </ChartAreas>
+        <ChartLegends>
+          <ChartLegend Name="Default">
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontFamily>Segoe UI</FontFamily>
+              <FontSize>8pt</FontSize>
+            </Style>
+            <Position>RightCenter</Position>
+            <DockOutsideChartArea>true</DockOutsideChartArea>
+            <ChartLegendTitle>
+              <Caption />
+              <Style>
+                <FontSize>8pt</FontSize>
+                <FontWeight>Bold</FontWeight>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </ChartLegendTitle>
+            <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+            <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+          </ChartLegend>
+        </ChartLegends>
+        <ChartTitles>
+          <ChartTitle Name="Default">
+            <Caption>COMPLIANCE STATUS</Caption>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontFamily>segoe UI</FontFamily>
+              <FontWeight>Bold</FontWeight>
+              <TextAlign>General</TextAlign>
+              <VerticalAlign>Top</VerticalAlign>
+              <Color>DimGray</Color>
+            </Style>
+            <Position>BottomCenter</Position>
+            <DockOutsideChartArea>true</DockOutsideChartArea>
+          </ChartTitle>
+        </ChartTitles>
+        <Palette>BrightPastel</Palette>
+        <ChartBorderSkin>
+          <Style>
+            <BackgroundColor>Gray</BackgroundColor>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <Color>White</Color>
+          </Style>
+        </ChartBorderSkin>
+        <ChartNoDataMessage Name="NoDataMessage">
+          <Caption>No Data Available</Caption>
+          <Style>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <TextAlign>General</TextAlign>
+            <VerticalAlign>Top</VerticalAlign>
+          </Style>
+        </ChartNoDataMessage>
+        <DataSetName>Comp_DSet</DataSetName>
+        <Top>1.2in</Top>
+        <Left>0.36569in</Left>
+        <Height>2.72916in</Height>
+        <Width>5.29795in</Width>
+        <Style>
+          <Border>
+            <Color>LightGrey</Color>
+            <Style>Solid</Style>
+          </Border>
+          <BackgroundColor>White</BackgroundColor>
+          <BackgroundGradientType>None</BackgroundGradientType>
+        </Style>
+      </Chart>
+      <Chart Name="Chart3">
+        <ChartCategoryHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Group Name="Chart3_CategoryGroup">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!Computer_Name.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!Required.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <Label>=Fields!Computer_Name.Value</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartCategoryHierarchy>
+        <ChartSeriesHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Label>Required</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartSeriesHierarchy>
+        <ChartData>
+          <ChartSeriesCollection>
+            <ChartSeries Name="Required">
+              <ChartDataPoints>
+                <ChartDataPoint>
+                  <ChartDataPointValues>
+                    <Y>=Sum(Fields!Required.Value)</Y>
+                  </ChartDataPointValues>
+                  <ChartDataLabel>
+                    <Style>
+                      <FontFamily>segoe UI</FontFamily>
+                    </Style>
+                    <UseValueAsLabel>true</UseValueAsLabel>
+                    <Visible>true</Visible>
+                  </ChartDataLabel>
+                  <ActionInfo>
+                    <Actions>
+                      <Action>
+                        <Drillthrough>
+                          <ReportName>Regional Summary Report</ReportName>
+                          <Parameters>
+                            <Parameter Name="CollectionID">
+                              <Value>=Parameters!Locations.Value</Value>
+                            </Parameter>
+                            <Parameter Name="ReportType">
+                              <Value>="Top10NonC"</Value>
+                            </Parameter>
+                            <Parameter Name="Status">
+                              <Value>2</Value>
+                            </Parameter>
+                          </Parameters>
+                        </Drillthrough>
+                      </Action>
+                    </Actions>
+                  </ActionInfo>
+                  <Style>
+                    <Color>="#00a1f1"</Color>
+                  </Style>
+                  <ChartMarker>
+                    <Style />
+                  </ChartMarker>
+                  <DataElementOutput>Output</DataElementOutput>
+                </ChartDataPoint>
+              </ChartDataPoints>
+              <Type>Bar</Type>
+              <Style />
+              <ChartEmptyPoints>
+                <Style />
+                <ChartMarker>
+                  <Style />
+                </ChartMarker>
+                <ChartDataLabel>
+                  <Style />
+                </ChartDataLabel>
+              </ChartEmptyPoints>
+              <ValueAxisName>Primary</ValueAxisName>
+              <CategoryAxisName>Primary</CategoryAxisName>
+              <ChartSmartLabel>
+                <CalloutLineColor>Black</CalloutLineColor>
+                <MinMovingDistance>0pt</MinMovingDistance>
+              </ChartSmartLabel>
+            </ChartSeries>
+          </ChartSeriesCollection>
+        </ChartData>
+        <ChartAreas>
+          <ChartArea Name="Default">
+            <ChartCategoryAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <Border>
+                    <Color>Silver</Color>
+                  </Border>
+                  <FontFamily>segoe UI</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <Interval>1</Interval>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMajorTickMarks>
+                  <Enabled>False</Enabled>
+                </ChartMajorTickMarks>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
+                <MaxFontSize>6pt</MaxFontSize>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartCategoryAxes>
+            <ChartValueAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <FontFamily>Segoe UI</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMajorTickMarks>
+                  <Enabled>False</Enabled>
+                </ChartMajorTickMarks>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartValueAxes>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </ChartArea>
+        </ChartAreas>
+        <ChartTitles>
+          <ChartTitle Name="Default">
+            <Caption>TOP 10 NON-COMPLIANT SERVERS</Caption>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontFamily>segoe UI</FontFamily>
+              <FontWeight>Bold</FontWeight>
+              <TextAlign>General</TextAlign>
+              <VerticalAlign>Top</VerticalAlign>
+              <Color>DimGray</Color>
+            </Style>
+            <Position>BottomCenter</Position>
+            <DockOutsideChartArea>true</DockOutsideChartArea>
+          </ChartTitle>
+        </ChartTitles>
+        <Palette>Pastel</Palette>
+        <ChartBorderSkin>
+          <Style>
+            <BackgroundColor>Gray</BackgroundColor>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <Color>White</Color>
+          </Style>
+        </ChartBorderSkin>
+        <ChartNoDataMessage Name="NoDataMessage">
+          <Caption>No Data Available</Caption>
+          <Style>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <TextAlign>General</TextAlign>
+            <VerticalAlign>Top</VerticalAlign>
+          </Style>
+        </ChartNoDataMessage>
+        <DataSetName>Non_Comp_DSet</DataSetName>
+        <Filters>
+          <Filter>
+            <FilterExpression>=Fields!Required.Value</FilterExpression>
+            <Operator>NotEqual</Operator>
+            <FilterValues>
+              <FilterValue DataType="Integer">0</FilterValue>
+            </FilterValues>
+          </Filter>
+        </Filters>
+        <Top>1.2in</Top>
+        <Left>6.16016in</Left>
+        <Height>2.72916in</Height>
+        <Width>5.46037in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Color>LightGrey</Color>
+            <Style>Solid</Style>
+          </Border>
+          <BackgroundColor>White</BackgroundColor>
+          <BackgroundGradientType>None</BackgroundGradientType>
+        </Style>
+      </Chart>
+      <Tablix Name="Tablix1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1.75in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>9.50484in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.30208in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Region Selected          </Value>
+                              <Style>
+                                <FontSize>11pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox2</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Style>None</Style>
+                        </BottomBorder>
+                        <RightBorder>
+                          <Style>None</Style>
+                        </RightBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox8">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Parameters!Region.Value</Value>
+                              <Style>
+                                <Color>DimGray</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox8</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BottomBorder>
+                          <Style>None</Style>
+                        </BottomBorder>
+                        <LeftBorder>
+                          <Style>None</Style>
+                        </LeftBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.57292in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox11">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Location Selected       </Value>
+                              <Style>
+                                <FontSize>11pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox11</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <TopBorder>
+                          <Style>None</Style>
+                        </TopBorder>
+                        <RightBorder>
+                          <Style>None</Style>
+                        </RightBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox13">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Join(Parameters!Locations.Label,", ")</Value>
+                              <Style>
+                                <Color>DimGray</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox13</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <TopBorder>
+                          <Style>None</Style>
+                        </TopBorder>
+                        <LeftBorder>
+                          <Style>None</Style>
+                        </LeftBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>Dummy_DSet</DataSetName>
+        <Top>0.22223in</Top>
+        <Left>0.36569in</Left>
+        <Height>0.875in</Height>
+        <Width>11.25484in</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>4.04999in</Height>
+    <Style />
+  </Body>
+  <Width>12.00917in</Width>
+  <Page>
+    <PageHeader>
+      <Height>0.78in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Rectangle Name="Rectangle8">
+          <ReportItems>
+            <Textbox Name="ReportTitleTextbox">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>REGIONAL SCCM DASHBOARD</Value>
+                      <Style>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>18pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox54</rd:DefaultName>
+              <Height>0.51667in</Height>
+              <Width>8.68945in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BackgroundColor>LightSteelBlue</BackgroundColor>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <KeepTogether>true</KeepTogether>
+          <Top>0.125in</Top>
+          <Height>0.51667in</Height>
+          <Width>12.00917in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <BackgroundColor>LightSteelBlue</BackgroundColor>
+          </Style>
+        </Rectangle>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageFooter>
+      <Height>0.41667in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox12">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>="Data Extracted on " &amp; Globals!ExecutionTime</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox12</rd:DefaultName>
+          <Top>0.04167in</Top>
+          <Height>0.29167in</Height>
+          <Width>4.23178in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="CM_CAS">
+      <DataSourceReference>NewDB</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>af87d8c0-2fcb-4669-8764-a303f1ec81a6</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="UserSIDs_DS">
+      <Query>
+        <DataSourceName>CM_CAS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@UserTokenSIDs">
+            <Value>=Parameters!UserTokenSIDs.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>select dbo.fn_rbac_GetAdminIDsfromUserSIDs(@UserTokenSIDs) as UserSIDs</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="UserSIDs">
+          <DataField>UserSIDs</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Comp_DSet">
+      <Query>
+        <DataSourceName>CM_CAS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@locale">
+            <Value>=Parameters!Locale.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@UserSIDs">
+            <Value>=Parameters!UserSIDs.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@CollectionIDs">
+            <Value>=Parameters!Locations.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>DECLARE @lcid AS INT
+SET @lcid =dbo.fn_LShortNameToLCID(@locale)
+
+SELECT DISTINCT 
+		sys.Name0 as [Computer Name],
+	   ui.ArticleID,
+	   CASE WHEN css.[Status] = 3 THEN 'Installed' 
+			WHEN css.[Status] = 2 THEN 'Required'
+		END AS [Status], 
+                   css.[Status] AS [StatusID],
+		ccm.CollectionID,
+		ccm.SiteCode
+FROM fn_rbac_BundledConfigurationItems(@UserSIDs)  bci
+JOIN fn_rbac_UpdateInfo(@lcid, @UserSIDs) ui 
+	ON ui.CI_ID=bci.BundledCI_ID
+JOIN fn_rbac_AuthListInfo(@lcid, @UserSIDs) ali 
+	ON ali.CI_ID = bci.CI_ID
+JOIN v_UpdateComplianceStatus css 
+	ON ui.CI_ID=css.CI_ID 
+JOIN v_R_System sys 
+	ON css.ResourceID=sys.ResourceID
+JOIN v_ClientCollectionMembers ccm 
+	ON ccm.ResourceID=sys.ResourceID
+JOIN v_CICategoryInfo_All vnd 
+	ON vnd.CI_ID = ui.CI_ID and vnd.CategoryTypeName= 'Company' 
+JOIN v_CICategoryInfo_All cls 
+	ON cls.CI_ID = ui.CI_ID and cls.CategoryTypeName='UpdateClassification'
+WHERE
+	ccm.CollectionID IN (@CollectionIDs) AND 
+	vnd.CategoryInstanceName like '%Microsoft%'  AND 
+                ali.CI_ID IN (SELECT CI_ID 
+								FROM fn_rbac_AuthListInfo(@lcid, @UserSIDs))</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Computer_Name">
+          <DataField>Computer Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ArticleID">
+          <DataField>ArticleID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Status">
+          <DataField>Status</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="StatusID">
+          <DataField>StatusID</DataField>
+          <rd:TypeName>System.Byte</rd:TypeName>
+        </Field>
+        <Field Name="CollectionID">
+          <DataField>CollectionID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SiteCode">
+          <DataField>SiteCode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Non_Comp_DSet">
+      <Query>
+        <DataSourceName>CM_CAS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@CollectionIDs">
+            <Value>=Parameters!Locations.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT TOP 10
+   sys.Name0 AS [Computer Name],
+   SUM( CASE WHEN css.[status]=2 THEN 1 ELSE 0 END ) AS [Required]
+from v_UpdateComplianceStatus css 
+JOIN v_UpdateInfo ui 
+	ON ui.CI_ID=css.CI_ID 
+JOIN v_BundledConfigurationItems  bci 
+	ON ui.CI_ID=bci.BundledCI_ID
+JOIN v_CICategoryInfo_All vnd 
+	ON vnd.CI_ID = ui.CI_ID 
+	AND vnd.CategoryTypeName= 'Company' 
+JOIN v_CICategoryInfo_All cls 
+	ON cls.CI_ID = ui.CI_ID 
+	AND cls.CategoryTypeName='UpdateClassification'
+JOIN v_R_System sys 
+	ON css.ResourceID=sys.ResourceID
+JOIN v_ClientCollectionMembers ccm 
+	ON ccm.ResourceID=sys.ResourceID
+LEFT JOIN v_gs_workstation_status ws 
+	ON ws.resourceid=sys.resourceid
+LEFT JOIN v_GS_COMPUTER_SYSTEM CS 
+	ON CS.ResourceID = css.ResourceID
+WHERE  ccm.CollectionID IN (@CollectionIDs)
+	AND vnd.CategoryInstanceName like '%Microsoft%'
+GROUP BY sys.Name0,  
+		ws.lasthwscan,
+		sys.Active0
+ORDER BY 2 DESC</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Computer_Name">
+          <DataField>Computer Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Required">
+          <DataField>Required</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Region_DSet">
+      <Query>
+        <DataSourceName>CM_CAS</DataSourceName>
+        <CommandText>SELECT DISTINCT Region FROM RegionalServerMapping</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Region">
+          <DataField>Region</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Country_DSet">
+      <Query>
+        <DataSourceName>CM_CAS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@Region">
+            <Value>=Parameters!Region.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT DISTINCT Country FROM RegionalServerMapping WHERE Region = @Region</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Country">
+          <DataField>Country</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Location_DSet">
+      <Query>
+        <DataSourceName>CM_CAS</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@Country">
+            <Value>=Parameters!Country.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT DISTINCT Location,CollectionID FROM RegionalServerMapping WHERE Country IN(@Country)</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Location">
+          <DataField>Location</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CollectionID">
+          <DataField>CollectionID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Dummy_DSet">
+      <Query>
+        <DataSourceName>CM_CAS</DataSourceName>
+        <CommandText>SELECT 1 AS DUMMY</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="DUMMY">
+          <DataField>DUMMY</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="UserTokenSIDs">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="S-1-5-21-3353469110-2964313667-871065595-140710"</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>UserTokenSIDs</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="Locale">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>="en-GB"</Value>
+        </Values>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="UserSIDs">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>UserSIDs_DS</DataSetName>
+          <ValueField>UserSIDs</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="Region">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>EMEA</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>1. Region</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Region_DSet</DataSetName>
+          <ValueField>Region</ValueField>
+          <LabelField>Region</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Country">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>Country_DSet</DataSetName>
+          <ValueField>Country</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>2. Country</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Country_DSet</DataSetName>
+          <ValueField>Country</ValueField>
+          <LabelField>Country</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="Locations">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>Location_DSet</DataSetName>
+          <ValueField>CollectionID</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>3. Locations</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Location_DSet</DataSetName>
+          <ValueField>CollectionID</ValueField>
+          <LabelField>Location</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <EmbeddedImages>
+    <EmbeddedImage Name="TMFLogo_Small">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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
+UMr/AxmVFnV3Rtu/AAAAAElFTkSuQmCC</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>a2be37ec-4d1b-483b-b751-7ef552a3b688</rd:ReportID>
+</Report>
