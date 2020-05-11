@@ -1,0 +1,14 @@
+SELECT vui.BulletinID,vui.ArticleID,vui.Title,p.Name,p.StoredPkgPath,p.Description
+FROM dbo.vUpdateToPkg AS vutp
+INNER JOIN dbo.v_UpdateInfo AS vui ON vui.CI_ID = vutp.CI_ID
+INNER JOIN dbo.v_Package AS p ON p.PackageID=vutp.PkgID
+WHERE vui.BulletinID='MS16-065'
+
+through Article ID
+
+SELECT vui.BulletinID,vui.ArticleID,vui.Title,p.Name,p.StoredPkgPath,p.Description
+FROM dbo.vUpdateToPkg AS vutp
+INNER JOIN dbo.v_UpdateInfo AS vui ON vui.CI_ID = vutp.CI_ID
+INNER JOIN dbo.v_Package AS p ON p.PackageID=vutp.PkgID
+WHERE vui.ArticleID='4535706'
+

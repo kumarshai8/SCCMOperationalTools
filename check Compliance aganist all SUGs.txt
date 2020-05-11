@@ -1,0 +1,52 @@
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+SET NOCOUNT ON
+go
+DECLARE @lcid AS INT, @UserSIDs INT = 16777327
+SET @lcid = dbo.fn_LShortNameToLCID(1)
+
+
+SELECT DISTINCT 
+        sys.Name0 as [Computer Name],
+        sys.AD_Site_Name0 as'AD Site',
+        Sys.Resource_Domain_OR_Workgr0 as'Domain',
+       ui.ArticleID,
+       ui.Title,
+       CASE WHEN css.[Status] = 3 THEN 'Installed' 
+            WHEN css.[Status] = 2 THEN 'Installation Required'
+        END AS [Status],
+       ui.DatePosted As ReleaseDate,
+       CASE WHEN ui.IsExpired = 1 THEN 'Expired' ELSE 'Not Expired' END AS Expired
+       ,ui.CI_ID
+       ,CASE WHEN 
+           t.ClientState=5  THEN 'Configuration Manager, Windows update' 
+           WHEN t.ClientState=8  THEN 'Add or Remove Feature'
+           WHEN t.ClientState=12 THEN 'Windows Update, Add or Remove Feature'
+           WHEN t.ClientState=13 THEN 'Configuration Manager, Windows Update, Add or Remove Feature' 
+           WHEN (t.ClientState=0 or ClientState like null) then 'No pending reboot'
+       end as Sta
+       ,OPSYS.LastBootUpTime0 as'LastBootUpTime'
+       ,ccm.SiteCode
+       ,OPSYS.Caption0 OSName
+       ,CASE WHEN sys.Is_Virtual_Machine0='1' THEN 'Yes' ELSE 'No' END IsVirtual
+FROM fn_rbac_BundledConfigurationItems(@UserSIDs)  bci 
+JOIN fn_rbac_UpdateInfo(@lcid, @UserSIDs) ui 
+    ON ui.CI_ID=bci.BundledCI_ID
+JOIN fn_rbac_AuthListInfo(@lcid, @UserSIDs) ali 
+    ON ali.CI_ID = bci.CI_ID
+JOIN v_UpdateComplianceStatus css with(nolock)
+    ON ui.CI_ID=css.CI_ID 
+JOIN v_R_System sys with(nolock)
+    ON css.ResourceID=sys.ResourceID
+JOIN v_ClientCollectionMembers ccm with(nolock)
+    ON ccm.ResourceID=sys.ResourceID
+JOIN v_CICategoryInfo_All vnd with(nolock)
+    ON vnd.CI_ID = ui.CI_ID and vnd.CategoryTypeName= 'Company' 
+JOIN v_CICategoryInfo_All cls with(nolock)
+    ON cls.CI_ID = ui.CI_ID and cls.CategoryTypeName='UpdateClassification'
+LEFT JOIN v_GS_OPERATING_SYSTEM OPSYS with(nolock) on sys.ResourceID = OPSYS.ResourceID
+LEFT JOIN vSMS_CombinedDeviceResources t WITH(NOLOCK) on t.MachineID=SYS.ResourceID    
+WHERE
+    ccm.CollectionID = 'CAS007A6' and --LEFT('',8) AND 
+    vnd.CategoryInstanceName like '%Microsoft%'  
+    --AND ali.CI_ID IN (@SUG) -- Commented SUG filter
+

@@ -1,0 +1,18 @@
+SELECT  
+      CPU.Name0 AS 'Server Name',  
+      CPU.Manufacturer0 AS 'Make',  
+      CPU.Model0 AS 'Model',  
+      OS.Caption0 AS 'Operating System',  
+      CPU.SystemType0 AS 'x86/x64',  
+      CONVERT(VARCHAR(26), OS.InstallDate0, 101) AS 'Install Date',  
+      DATEDIFF(HOUR, OS.LastBootUpTime0, ws.LastHWScan) AS 'Uptime (in Hrs)',  
+      CONVERT(VARCHAR(26), OS.LastBootUpTime0, 100) AS 'Last Reboot Date/Time',  
+      CONVERT(VARCHAR(26), WS.LastHWScan, 101) AS 'Last Hardware Inventory'  
+ FROM  
+      dbo.v_GS_WORKSTATION_STATUS WS  
+ LEFT OUTER JOIN dbo.v_GS_Operating_System OS  
+      ON WS.ResourceID = OS.ResourceID  
+ LEFT OUTER JOIN dbo.v_GS_COMPUTER_SYSTEM CPU  
+      ON CPU.ResourceID = OS.ResourceID  
+      WHERE OS.Caption0 LIKE '%server%'  
+      ORDER BY OS.LastBootUpTime0

@@ -1,0 +1,4 @@
+select * from v_Collections V
+inner join   Collection_Rules_SQL C
+on V.CollectionID = C.CollectionID
+ where SQL like '%GRP_APP_Acrobat_Reader_DC_Font_Pack%'

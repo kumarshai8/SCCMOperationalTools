@@ -1,0 +1,1 @@
+http://eskonr.com/2016/08/sccm-configmgr-sql-query-to-find-top-x-missing-updates-for-specific-collection-for-specific-update-group/

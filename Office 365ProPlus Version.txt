@@ -1,0 +1,52 @@
+select distinct v_gs_system.name0,version0,displayname0,prodid0,ad_site_name0,v_FullCollectionMembership.ResourceID,
+v_FullCollectionMembership.collectionID,'64' Arctect
+from v_GS_ADD_REMOVE_PROGRAMS_64 
+Inner join v_gs_system on v_GS_ADD_REMOVE_PROGRAMS_64.ResourceID= v_gs_system.ResourceID 
+inner join v_R_System on v_gs_system.ResourceID=v_R_System.ResourceID 
+inner join v_FullCollectionMembership on v_FullCollectionMembership.ResourceID=v_GS_ADD_REMOVE_PROGRAMS_64.ResourceID
+where 
+DisplayName0 like '%Microsoft Office 365 ProPlus - en-us%' and collectionID='CAS007A6'
+UNION 
+select distinct v_gs_system.name0,version0,displayname0,prodid0,ad_site_name0,v_FullCollectionMembership.ResourceID,
+v_FullCollectionMembership.collectionID,'32' Arctect
+from v_GS_ADD_REMOVE_PROGRAMS
+Inner join v_gs_system on v_GS_ADD_REMOVE_PROGRAMS.ResourceID= v_gs_system.ResourceID 
+inner join v_R_System on v_gs_system.ResourceID=v_R_System.ResourceID 
+inner join v_FullCollectionMembership on v_FullCollectionMembership.ResourceID=v_GS_ADD_REMOVE_PROGRAMS.ResourceID
+where 
+DisplayName0 like '%Microsoft Office 365 ProPlus - en-us%' and collectionID='CAS007A6'
+order by 8
+
+--and prodid0 
+--order by version
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+https://social.technet.microsoft.com/Forums/en-US/47ec7d2f-5113-4bf6-93f3-c3e109789feb/sccm-sql-query-for-office-32-bit-and-64-bit?forum=configmanagergeneral
+
+SELECT DISTINCT  
+  SYS.Name0
+  ,ARP.DisplayName0 As 'Software Name'
+  ,ARP.Version0 As 'Version'
+  ,ARP.InstallDate0 As 'Installed Date'
+ FROM 
+  dbo.v_R_System As SYS
+  INNER JOIN dbo.v_FullCollectionMembership FCM On FCM.ResourceID = SYS.ResourceID 
+  INNER JOIN dbo.v_Add_REMOVE_PROGRAMS As ARP On SYS.ResourceID = ARP.ResourceID 
+ WHERE   
+ (ARP.DisplayName0 LIKE '%Microsoft % 365 %')
+ OR ARP.DisplayName0 LIKE 'Microsoft % Professional%'
+ OR ARP.DisplayName0 LIKE 'Microsoft % Enterprise %')
+ ORDER BY Name0 ASC
+
+
+
+
+
+
+

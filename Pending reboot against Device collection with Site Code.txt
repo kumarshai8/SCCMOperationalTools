@@ -1,0 +1,16 @@
+select  Distinct sys.AD_Site_Name0 as'AD Site'
+		,Sys.Resource_Domain_OR_Workgr0 as'Domain'
+		,sys.Name0 as'Name'
+		,ws.LastHWScan
+		,OPSYS.LastBootUpTime0 as'LastBootUpTime'
+		,OPSYS.Caption0 as'OS'
+		,m.SiteCode
+from v_R_System sys
+INNER JOIN v_AssignmentState_Combined assc on sys.ResourceID=assc.ResourceID
+INNER JOIN v_StateNames sn on assc.StateType = sn.TopicType and sn.StateID=isnull(assc.StateID,0)
+INNER JOIN v_GS_WORKSTATION_STATUS ws on sys.ResourceID=ws.ResourceID
+INNER JOIN v_GS_OPERATING_SYSTEM OPSYS on sys.ResourceID=OPSYS.ResourceID
+INNER JOIN v_FullCollectionMembership m on m.ResourceID=OPSYS.ResourceID
+where sn.StateName like'%Pending system restart%'--and sys.Operating_System_Name_and0 like'%server%'
+and m.CollectionID in ('')
+ORDER by sys.AD_Site_Name0,Sys.Name0 

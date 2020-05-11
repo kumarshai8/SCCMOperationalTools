@@ -1,0 +1,6 @@
+select Netbios_Name0 from v_r_system where SMS_Unique_Identifier0 = 'GUID:AE179AA0-E30A-425E-904F-D490A161F9FF'
+
+
+select * from system_disc where name0 like '%CRAJU1SVTSUP%'
+
+select * from system_disc where SMS_Unique_Identifier0 like'%GUID:B9E003C2-B455-4876-A005-B95A09F92E87%'

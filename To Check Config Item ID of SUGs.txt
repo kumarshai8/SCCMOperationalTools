@@ -1,0 +1,6 @@
+DECLARE @lcid AS INT=1,@UserSIDs INT = 16777327
+SELECT @lcid = dbo.fn_LShortNameToLCID(@Locale);
+SELECT DISTINCT CI_ID AS AuthListID,
+Title AS Title
+FROM fn_rbac_AuthListInfo(@lcid, @UserSIDs)
+ORDER BY Title

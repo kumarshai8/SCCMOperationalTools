@@ -1,0 +1,1 @@
+http://eskonr.com/2014/10/sccm-configmgr-2012-software-update-scan-error-group-policy-settings-were-overwritten-by-a-higher-authority-error-code-0x87d00692/

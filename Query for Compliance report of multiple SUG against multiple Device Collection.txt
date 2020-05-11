@@ -1,0 +1,26 @@
+Declare @Status nvarchar(255);set @Status='2';
+--Status 0 for Unknown, 1 for Not Applicable,2 for Required ,3 for installed
+select sys.name0 [Computer Name],sys.User_Name0 [User Name], os.caption0 [OS],
+CONVERT(VARCHAR(26), ws.lasthwscan, 100) as [LastHWScan],
+CONVERT(VARCHAR(26), uss.lastscantime, 100) AS 'LastSUScanTime',
+CONVERT(VARCHAR(26), sys.last_logon_timestamp0, 100) AS 'Last Logon Time',
+case when sys.client0='1' then 'Yes' else 'No'
+end as 'Client (Yes/No)', c.IPAddress AS [IP Address]
+From v_Update_ComplianceStatusAll UCS
+left join v_r_system sys on ucs.resourceid=sys.resourceid
+left join v_FullCollectionMembership fcm on sys.resourceid=fcm.resourceid
+left join v_collection coll on coll.collectionid=fcm.collectionid
+left join v_GS_OPERATING_SYSTEM os on ucs.resourceid=os.resourceid
+left join v_gs_workstation_status ws on ucs.resourceid=ws.resourceid
+left join v_updatescanstatus uss on ucs.ResourceId=uss.ResourceID
+left join v_AuthListInfo LI on ucs.ci_id=li.ci_id
+INNER JOIN (SELECT     IP1.resourceid AS rsid2, IPAddress = substring
+((SELECT     (IP_Addresses0 + ', ')
+FROM    v_RA_System_IPAddresses IP2
+WHERE     IP2.IP_Addresses0 NOT LIKE '169%' AND IP2.IP_Addresses0 NOT LIKE '0.%' AND IP2.IP_Addresses0 NOT LIKE '%::%' AND
+IP_Addresses0 NOT LIKE '192.%' AND IP1.resourceid = IP2.resourceid
+ORDER BY resourceid FOR xml path('')), 1, 50000)
+FROM    v_RA_System_IPAddresses IP1
+GROUP BY resourceid) c ON c.rsid2 = ucs.resourceid
+where li.title IN ('Global - Windows 2008 R2 Updates','Global - Windows 2008 R2 Updates 2014','Global - Windows 2008 R2 Updates 2015','Global - Windows 2008 R2 Updates 2016-10','Global - Windows 2008 R2 Updates 2016-Q1','Global - Windows 2008 R2 Updates 2016-Q2','Global - Windows 2008 R2 Updates 2016-Q3','Global - Windows 2012 Updates','Global - Windows 2012 Updates 2014','Global - Windows 2012 Updates 2015','Global - Windows 2012 Updates 2016-10','Global - Windows 2012 Updates 2016-Q1','Global - Windows 2012 Updates 2016-Q2','Global - Windows 2012 Updates 2016-Q3','Global - Windows 2012 R2 Updates','Global - Windows 2012 R2 Updates 2015','Global - Windows 2012 R2 Updates 2016-10','Global - Windows 2012 R2 Updates 2016-Q1','Global - Windows 2012 R2 Updates 2016-Q2','Global - Windows 2012 R2 Updates 2016-Q3','Global - Office 2010 Updates','Global - Office 2010 Updates 2014','Global - Office 2010 Updates 2015','Global - Office 2010 Updates 2016-10','Global - Office 2010 Updates 2016-Q1','Global - Office 2010 Updates 2016-Q2','Global - Office 2010 Updates 2016-Q3','Global - Office 2013 Updates','Global - Office 2013 Updates 2014','Global - Office 2013 Updates 2015','Global - Office 2013 Updates 2016-10','Global - Office 2013 Updates 2016-Q2','Global - Office 2013 Updates 2016-Q1','Global - Office 2013 Updates 2016-Q3','Global - Other MS Updates') and coll.collectionID in ('P0200074','P0200063','P0200067','P0200068','P020006A','P020006B','P020006D','P020006F','P0200070','P0200073','P0200075','P0200076','P0200069','P020009A')and ucs.status=@Status
+group by sys.name0,sys.User_Name0,os.Caption0,ws.LastHWScan ,uss.LastScanTime,sys.Last_Logon_Timestamp0,sys.client0,c.IPAddress

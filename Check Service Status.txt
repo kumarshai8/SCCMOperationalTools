@@ -1,0 +1,48 @@
+select Distinct
+CS.Name0,
+SER.Displayname0,
+SER.Started0,
+SER.StartMode0,
+SER.State0,
+vr.AD_Site_Name0,
+FCM.SiteCode,
+CS.Domain0 Domain,
+OPSYS.Caption0 OS
+from dbo.v_FullCollectionMembership FCM
+join dbo.v_GS_COMPUTER_SYSTEM CS on  CS.ResourceId = FCM.ResourceID
+join dbo.v_R_System vr on  vr.ResourceId = CS.ResourceID
+left join dbo.v_GS_SERVICE SER on CS.ResourceId = SER.ResourceID
+join v_GS_OPERATING_SYSTEM OPSYS on CS.ResourceID = OPSYS.ResourceID
+where
+SER.displayname0 like '%webclient%'
+--and (SER.State0 != 'Running' or Isnull(SER.State0,'')='')
+and FCM.CollectionID = 'CAS007A6'
+
+-----------------------------------------------------------------------------------------------------
+
+Select Distinct
+SYS.Netbios_Name0,
+sys.AD_Site_Name0,
+sys.User_Domain0,
+sys.User_Name0,
+SERV.DisplayName0,
+SERV.State0
+From
+v_R_System SYS Join
+v_GS_SERVICE SERV On SYS.ResourceID = SERV.ResourceID
+Where
+SERV.DisplayName0 like 'WebClient'
+Order By
+SYS.Netbios_Name0
+
+
+------------------------------------------------------------------------------------------------------
+
+SELECT          GS.Name0 as 'PC Name',
+            GSS.DisplayName0 as 'Service',
+            GSS.StartMode0 as 'Startup',
+            GSS.State0 as 'State',
+            GSS.Started0 as 'Started'
+FROM             v_GS_SERVICE GSS, v_GS_COMPUTER_SYSTEM GS
+Where GSS.ResourceID = GS.ResourceID AND GSS.DisplayName0 = 'WebClient'
+ORDER BY GS.Name0, GSS.DisplayName0

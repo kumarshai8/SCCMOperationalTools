@@ -1,0 +1,7 @@
+select UI1.Title,UI1.IsSuperseded,ui1.BulletinID,UI1.InfoURL, 
+UI2.Title [S Title],ui2.IsSuperseded,UI2.BulletinID [S BulletinID],UI2.InfoURL [S InfoURL] 
+from v_CIRelation_all CA 
+left join v_UpdateInfo UI1 on CA.ReferencedCI_ID=UI1.CI_ID 
+left join v_UpdateInfo UI2 on ca.CI_ID=ui2.CI_ID 
+where RelationType=6 
+and UI1.title like '%Windows 10%'

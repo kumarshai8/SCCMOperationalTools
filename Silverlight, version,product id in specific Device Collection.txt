@@ -1,0 +1,57 @@
+find installed Microsoft Silverlight ,its version and Product ID for specific Collection for x86
+
+
+select distinct v_gs_system.name0,version0,displayname0,prodid0,ad_site_name0,v_FullCollectionMembership.ResourceID,
+v_FullCollectionMembership.collectionID 
+from v_GS_ADD_REMOVE_PROGRAMS 
+Inner join v_gs_system on v_GS_ADD_REMOVE_PROGRAMS.ResourceID= v_gs_system.ResourceID 
+inner join v_R_System on v_gs_system.ResourceID=v_R_System.ResourceID 
+inner join v_FullCollectionMembership on v_FullCollectionMembership.ResourceID=v_GS_ADD_REMOVE_PROGRAMS.ResourceID
+where 
+DisplayName0='Microsoft Silverlight' and collectionID='P020000A'
+--and prodid0 
+--order by version
+
+---------------------------------------------------------------------------------------------------------------------
+
+find installed Microsoft Silverlight ,its version and Product ID for specific Collection for x64
+
+select distinct v_gs_system.name0,version0,displayname0,prodid0,ad_site_name0,v_FullCollectionMembership.ResourceID,
+v_FullCollectionMembership.collectionID 
+from v_GS_ADD_REMOVE_PROGRAMS_64 
+Inner join v_gs_system on v_GS_ADD_REMOVE_PROGRAMS_64.ResourceID= v_gs_system.ResourceID 
+inner join v_R_System on v_gs_system.ResourceID=v_R_System.ResourceID 
+inner join v_FullCollectionMembership on v_FullCollectionMembership.ResourceID=v_GS_ADD_REMOVE_PROGRAMS_64.ResourceID
+where 
+DisplayName0='Microsoft Silverlight' and collectionID='P020000A'
+--and prodid0 
+--order by version
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+find installed Microsoft Silverlight ,its version and Product ID for specific Collection for x64 and x86 Both
+
+
+select distinct v_gs_system.name0,version0,displayname0,prodid0,ad_site_name0,v_FullCollectionMembership.ResourceID,
+v_FullCollectionMembership.collectionID,'64' Arctect
+from v_GS_ADD_REMOVE_PROGRAMS_64 
+Inner join v_gs_system on v_GS_ADD_REMOVE_PROGRAMS_64.ResourceID= v_gs_system.ResourceID 
+inner join v_R_System on v_gs_system.ResourceID=v_R_System.ResourceID 
+inner join v_FullCollectionMembership on v_FullCollectionMembership.ResourceID=v_GS_ADD_REMOVE_PROGRAMS_64.ResourceID
+where 
+DisplayName0='CrowdStrike Windows Sensor' and collectionID='CAS001C7'
+UNION 
+select distinct v_gs_system.name0,version0,displayname0,prodid0,ad_site_name0,v_FullCollectionMembership.ResourceID,
+v_FullCollectionMembership.collectionID,'32' Arctect
+from v_GS_ADD_REMOVE_PROGRAMS
+Inner join v_gs_system on v_GS_ADD_REMOVE_PROGRAMS.ResourceID= v_gs_system.ResourceID 
+inner join v_R_System on v_gs_system.ResourceID=v_R_System.ResourceID 
+inner join v_FullCollectionMembership on v_FullCollectionMembership.ResourceID=v_GS_ADD_REMOVE_PROGRAMS.ResourceID
+where 
+DisplayName0='CrowdStrike Windows Sensor' and collectionID='CAS001C7'
+order by 8
+
+--and prodid0 
+--order by version

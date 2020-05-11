@@ -1,0 +1,9 @@
+
+LIST COLLECTIONS WITH MAINTENANCE WINDOWS - CONFIGMGR 2012
+
+
+
+SELECT v_Collection.Name, v_Collection.Comment,v_ServiceWindow.Description, v_ServiceWindow.StartTime, v_ServiceWindow.Duration
+FROM v_ServiceWindow
+JOIN v_Collection ON v_Collection.CollectionID = v_ServiceWindow.CollectionID
+ORDER BY v_Collection.Name

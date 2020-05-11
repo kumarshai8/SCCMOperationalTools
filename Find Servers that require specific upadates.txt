@@ -1,0 +1,14 @@
+select vrs.Name0 [PC Name],vrs.User_Name0,ui.InfoURL as InformationURL,
+ ui.dateposted [Date Posted] 
+          from V_UpdateComplianceStatus  css 
+          join v_UpdateInfo ui on ui.CI_ID=css.CI_ID 
+          left join v_CITargetedMachines  ctm on ctm.CI_ID=css.CI_ID and ctm.ResourceID = css.ResourceID
+INNER join v_CICategories_All catall2 on catall2.CI_ID=css.CI_ID
+INNER  join v_CategoryInfo catinfo2 on catall2.CategoryInstance_UniqueID = catinfo2.CategoryInstance_UniqueID and catinfo2.CategoryTypeName='UpdateClassification'
+JOIN dbo.v_R_System AS vrs ON vrs.ResourceID = css.ResourceID
+WHERE
+ui.IsSuperseded!='1' and
+ui.Severity IN (8, 10) --this is for security and critical updates
+AND css.Status=2 --for required
+and ui.Title='SQL Server 2016 Service Pack 2 Cumulative Update (CU) 4 KB4464106'
+ORDER BY 1
