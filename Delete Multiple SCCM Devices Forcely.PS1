@@ -1,0 +1,1 @@
+Get-Content "D:\Powershell Delete computer records from SCCM\clients.txt" | foreach { Remove-CMDevice -DeviceName $_ -Force }
